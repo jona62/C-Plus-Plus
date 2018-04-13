@@ -36,14 +36,23 @@ void remove(int x)
 {
 	node *t=start;
 	node *p;
-	while(t->val!=x)
+	while(t->val!=x && t->next != NULL)
 	{
 		p=t;
 		t=t->next;
 	}
-	p->next=t->next;
-	delete t;
+	if(t->next == NULL) //Checks if its the end of the list and the number wasn't found
+	{
+		cout<<"Number was not found";
+		return;
+	}
+  	else //Otherwise handles every other outcome
+	{
+		p->next=t->next;
+		delete t;
+	}
 }
+
 
 void search(int x)
 {
